@@ -2,8 +2,12 @@
 import mongoose from "mongoose";
 import dns from "dns/promises";
 
-// REMOVE the top-level check for MONGODB_URI
-// Move it inside the dbConnect function
+const MONGODB_URI = process.env.MONGODB_URI ?? "";
+
+if (!MONGODB_URI) {
+  // fail loudly instead of silently falling back to localhost (helps catch missing env)
+  throw new Error("MONGODB_URI is not defined. Set it in .env.local or in your deployment settings.");
+}
 
 type MongooseCache = {
   conn: typeof mongoose | null;
@@ -52,14 +56,6 @@ async function checkSrvResolutionIfNeeded(uri: string) {
 }
 
 export default async function dbConnect(): Promise<typeof mongoose> {
-  // MOVE the MONGODB_URI check inside the function
-  const MONGODB_URI = process.env.MONGODB_URI ?? "";
-  
-  if (!MONGODB_URI) {
-    // Only throw when the function is called, not when module is imported
-    throw new Error("MONGODB_URI is not defined. Set it in .env.local or in your deployment settings.");
-  }
-
   if (cached.conn) {
     console.log("[db] Using cached mongoose connection");
     return cached.conn;
@@ -123,9 +119,7 @@ export async function checkDbHealth() {
 }
 
 export function debugEnvAndConnection(): void {
-  // Also update this function to get MONGODB_URI inside
-  const MONGODB_URI = process.env.MONGODB_URI ?? "";
-  console.log("[db.debug] MONGODB_URI (redacted):", MONGODB_URI ? summarizeUri(MONGODB_URI) : "Not set");
+  console.log("[db.debug] MONGODB_URI (redacted):", summarizeUri(MONGODB_URI));
   console.log("[db.debug] NODE_ENV:", process.env.NODE_ENV ?? "undefined");
   console.log("[db.debug] mongoose.connection.readyState =", mongoose.connection.readyState);
   console.log("[db.debug] mongoose.connections length =", mongoose.connections?.length ?? 0);
