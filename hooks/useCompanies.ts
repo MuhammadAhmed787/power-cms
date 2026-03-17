@@ -22,7 +22,7 @@ export function useCompanies() {
     try {
       setIsLoading(true)
       setError(null)
-      const response = await fetch('/api/company_information')
+      const response = await fetch('/api/company_information?limit=1000')
       
       if (!response.ok) {
         throw new Error('Failed to fetch companies')

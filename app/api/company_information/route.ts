@@ -11,19 +11,28 @@ export async function GET(req: Request) {
   try {
     const { searchParams } = new URL(req.url)
     const search = searchParams.get("search")?.trim()
+    const limitParam = searchParams.get("limit")
+
+    // Parse limit, default to 10, max 1000
+    let limit = 10
+    if (limitParam) {
+      const parsed = parseInt(limitParam, 10)
+      if (!isNaN(parsed) && parsed > 0) {
+        limit = Math.min(parsed, 1000) // cap at 1000
+      }
+    }
 
     let query = {}
 
-    // 🔍 If search term exists, search by companyName
     if (search && search.length >= 2) {
       query = {
-        companyName: { $regex: search, $options: "i" } // case-insensitive, partial match
+        companyName: { $regex: search, $options: "i" }
       }
     }
 
     const companies = await CompanyInformation
       .find(query)
-      .limit(10)
+      .limit(limit)
       .lean()
 
     return NextResponse.json(companies, { status: 200 })
