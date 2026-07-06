@@ -8,6 +8,8 @@ export interface ICompany {
   address: string;
   companyRepresentative: string; // Added company representative field
   support: string; // Added support field
+  softwareType: string;   // <-- NEW
+  version: string;        // <-- NEW
 }
 
 export interface IContact {
@@ -33,6 +35,8 @@ export interface ITask {
     address: string;
     companyRepresentative: string; // Added company representative field
     support: string; // Added support field
+    softwareType: string;   // <-- NEW
+    version: string;        // <-- NEW
   };
   contact: {
     name: string;
@@ -129,6 +133,8 @@ const TaskSchema: Schema = new Schema(
       address: { type: String, required: true },
       companyRepresentative: { type: String, default: "" }, // Added company representative field
       support: { type: String, default: "" }, // Added support field
+            softwareType: { type: String, default: "" },   // <-- NEW
+      version: { type: String, default: "" },        // <-- NEW
     },
     contact: {
       name: { type: String, required: true },
