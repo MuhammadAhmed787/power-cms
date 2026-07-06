@@ -256,6 +256,11 @@ const handleSubmit = async (e: React.FormEvent) => {
                     <option value="Power Accounting">Power Accounting</option>
                     <option value="Finance Manager Urdu">Finance Manager Urdu</option>
                     <option value="Power-Pos">Power-Pos</option>
+                    <option value="Employee-Management-System">Employee Management System</option>
+                    <option value="Finance-Manager-FBR">Finance Manager FBR</option>
+                    <option value="Finance-Manager-POS">Finance Manager POS</option>
+                    <option value="Power-Rice">Power Rice</option>
+                    <option value="Power-Dashboard">Power Dashboard</option>
                   </select>
                 </div>
 

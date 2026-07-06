@@ -56,7 +56,12 @@ const OnlineComplaintSchema = new mongoose.Schema({
       'Finance Controller',
       'Power Accounting',
       'Finance Manager Urdu',
-      'Power-Pos'
+      'Power-Pos',
+     "Employee Management System",
+      "Finance Manager FBR",
+    "Finance Manager POS",
+    "Power Rice",
+    "Power DashBoard"
     ],
     required: true,
   },

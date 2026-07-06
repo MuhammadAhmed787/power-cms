@@ -354,12 +354,30 @@ export function CompanyForm({
                     <SelectTrigger id="softwareType">
                       <SelectValue placeholder="Select software type" />
                     </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="Finance Manager">Finance Manager</SelectItem>
-                      <SelectItem value="Finance Controller">Finance Controller</SelectItem>
-                      <SelectItem value="Power Accounting">Power Accounting</SelectItem>
-                      <SelectItem value="Ems Finance Manager Urdu">Ems Finance Manager Urdu</SelectItem>
-                      <SelectItem value="Pos">Pos</SelectItem>
+                     <SelectContent>
+                      <SelectItem value="Finance Manager">
+                        Finance Manager
+                      </SelectItem>
+                      <SelectItem value="Power Accounting">
+                        Power Accounting
+                      </SelectItem>
+                      <SelectItem value="Finance Controller">
+                        Finance Controller
+                      </SelectItem>
+                      
+                      <SelectItem value="Employee Management System">
+                        Employee Management System
+                      </SelectItem>
+                      <SelectItem value="Finance Controller FBR">
+                        Finance Controller FBR
+                      </SelectItem>
+                      <SelectItem value="Finance Manger POS">
+                        Finance Manger POS
+                      </SelectItem>
+                      <SelectItem value="Power Rice">Power Rice</SelectItem>
+                      <SelectItem value="Power DashBoard">
+                        Power DashBoard
+                      </SelectItem>
                     </SelectContent>
                   </Select>
                 </div>

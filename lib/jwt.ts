@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken'
 
 const JWT_SECRET = process.env.JWT_SECRET || 'your-fallback-secret-key'
-const JWT_EXPIRES_IN = '10m' // 10 minutes
+const JWT_EXPIRES_IN = '100m' // 10 minutes
 
 export function generateToken(payload: any): string {
   return jwt.sign(payload, JWT_SECRET, { expiresIn: JWT_EXPIRES_IN })

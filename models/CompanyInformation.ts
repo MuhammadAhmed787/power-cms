@@ -32,7 +32,7 @@ const CompanySchema: Schema = new Schema(
     companyRepresentative: { type: String, default: "N/A" },
     softwareInformation: [
       {
-        softwareType: { type: String, enum: ["Finance Manager", "Finance Controller", "Power Accounting", "Ems Finance Manager Urdu", "Pos"], required: true },
+        softwareType: { type: String, enum: ["Finance Manager", "Finance Controller", "Power Accounting", "Employee Management System", "Finance Manager Urdu", "Finance Manager FBR","Power Rice", "Power Dashboard"], required: true },
         version: { type: String, enum: ["v1.00", "v2.00", "v3.00"], required: true },
         lastUpdated: { type: Date, required: true },
       },
