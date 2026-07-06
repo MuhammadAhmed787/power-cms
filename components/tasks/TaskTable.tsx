@@ -5,8 +5,9 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Building, Edit, Trash2, FileText, ChevronLeft, ChevronRight, ClipboardList, User, Phone } from "lucide-react"
+import { Building, Edit, Trash2, FileText, ChevronLeft, ChevronRight, ClipboardList, User, Phone, Monitor } from "lucide-react"
 
+// Updated Task interface to include softwareType
 interface Task {
   _id?: string
   code: string
@@ -14,6 +15,8 @@ interface Task {
     name: string
     city: string
     address: string
+    softwareType?: string // <-- Added
+    version?: string      // optional if needed
   }
   contact: {
     name: string
@@ -137,6 +140,10 @@ export function TaskTable({ tasks, isLoading, onEdit, onDelete }: TaskTableProps
                     <th className="px-3 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">
                       Company
                     </th>
+                    {/* NEW: Software Type Column */}
+                    <th className="px-3 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">
+                      Software Type
+                    </th>
                     <th className="px-3 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider hidden sm:table-cell">
                       Contact
                     </th>
@@ -185,6 +192,17 @@ export function TaskTable({ tasks, isLoading, onEdit, onDelete }: TaskTableProps
                           </span>
                         </div>
                       </td>
+                      {/* NEW: Software Type cell with purple theme */}
+                      <td className="px-3 py-3">
+                        {task.company.softwareType ? (
+                          <Badge className="bg-purple-100 text-purple-700 hover:bg-purple-200 text-xs font-medium">
+                            <Monitor className="h-3 w-3 mr-1 inline" />
+                            {task.company.softwareType}
+                          </Badge>
+                        ) : (
+                          <span className="text-xs text-muted-foreground italic">—</span>
+                        )}
+                      </td>
                       <td className="px-3 py-3 hidden sm:table-cell">
                         <div className="flex items-center">
                           <User className="h-3 w-3 text-muted-foreground mr-2" />
@@ -228,10 +246,10 @@ export function TaskTable({ tasks, isLoading, onEdit, onDelete }: TaskTableProps
                         </span>
                       </td>
                       <td className="px-3 py-3 text-xs text-muted-foreground">
-  {task.TasksAttachment && task.TasksAttachment.length > 0
-    ? `${task.TasksAttachment.length} file${task.TasksAttachment.length > 1 ? 's' : ''}`
-    : 'None'}
-</td>
+                        {task.TasksAttachment && task.TasksAttachment.length > 0
+                          ? `${task.TasksAttachment.length} file${task.TasksAttachment.length > 1 ? 's' : ''}`
+                          : 'None'}
+                      </td>
                       <td className="px-3 py-3">
                         <div className="flex gap-2">
                           <Button
@@ -258,7 +276,7 @@ export function TaskTable({ tasks, isLoading, onEdit, onDelete }: TaskTableProps
               </table>
             </div>
             
-            {/* Pagination */}
+            {/* Pagination (unchanged) */}
             <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center px-4 py-3 gap-4">
               <div className="flex items-center gap-2 w-full sm:w-auto">
                 <label htmlFor="itemsPerPage" className="text-sm font-medium">
