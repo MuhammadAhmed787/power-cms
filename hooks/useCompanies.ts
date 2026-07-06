@@ -11,6 +11,13 @@ interface Company {
   phoneNumber: string
   companyRepresentative: string
   support: string
+    // ye change ki hai
+   softwareInformation: {
+    softwareType: string
+    version: string
+    lastUpdated: string
+    _id: string
+  }[]
 }
 
 export function useCompanies() {
